@@ -1,0 +1,223 @@
+deploy:
+  url: https://example.com
+  dashboardUrl: https://admin.example.com 
+  firebase:
+    mainProject: example-website
+    dashboardHosting: example-admin
+
+devUrls: # do not change
+  website: http://localhost:3000
+  proxyTo: http://localhost:5000
+  dashboard: http://localhost:8000
+
+pages:
+
+  - name: homepage
+    title: Home page
+    #lists:
+    #  - services
+    sections:
+      - name: header
+      # - name: content
+      #   use:
+      #     - page: common
+      #       section: footer
+      #       as: footerSection
+
+  - name: terms
+    title: Terms and Conditions
+    sections:
+      - name: header
+      - name: content
+
+  # - name: privacy
+  #   title: Privacy Policy
+  #   sections:
+  #     - name: header
+  #     - name: content
+
+  # - name: cookies
+  #   title: Cookie Policy
+  #   sections:
+  #     - name: header
+  #     - name: content
+
+  - name: common
+    title: All pages
+    sections:
+      - name: footer
+
+# emails:
+  # provider: sendinblue
+  # templates:
+
+    # - name: newsletter-external
+    #   templateFile: templates/newsletter-external.html
+    #   subject:
+    #     literal: Confirmation of newsletter subscription
+    #   to:
+    #     address:
+    #       param: email
+    #   from:
+    #     address:
+    #       literal: webmaster@example.com
+    #     displayName:
+    #       literal: Example.com | Website
+
+    # - name: contact-external
+    #   templateFile: templates/contact-external.html
+    #   subject:
+    #     literal: We have received your message.
+    #   to:
+    #     address:
+    #       param: email
+    #     displayName:
+    #       param: name
+    #   from:
+    #     address:
+    #       literal: webmaster@example.com
+    #     displayName:
+    #       literal: Example.com | Website
+
+    # - name: contact-internal
+    #   templateFile: templates/contact-internal.html
+    #   subject:
+    #     literal: New website form - Contact us.
+    #   to:
+    #     address:
+    #       setting: admin.emails.contactAddress
+    #   from:
+    #     address:
+    #       literal: webmaster@example.com
+    #     displayName:
+    #       literal: Example.com | Website
+
+lists: 
+
+  # - name: services
+  #   title: Services
+  #   singular: service
+  #   materialIcons: 
+  #       create: add
+  #   maxItems: 4
+  #   publicAccess:
+  #       read: true
+  #   properties:
+  #     - name: name
+  #       title: Service name
+  #       type: text
+  #     - name: order
+  #       title: Order
+  #       type: select
+  #       options: 
+  #         - value: 0
+  #           label: Any
+  #         - value: 1
+  #         - value: 2
+  #         - value: 3
+  #         - value: 4
+  #     - name: description
+  #       title: Service description
+  #       type: textarea
+  #     - name: logo
+  #       title: Service logo
+  #       type: file
+  #       accept: image/png
+  #   sort:
+  #       property: order
+  #       direction: ascending
+  #   listing:
+  #     - name
+  #     - order
+
+  # - name: messages
+  #   title: Messages
+  #   singular: message
+  #   publicAccess:
+  #       create: true
+  #   adminOperations:
+  #       create: false
+  #   evals:
+  #     - name: date
+  #       expression: this.date || (new Date()).toISOString().slice(0,10)
+  #   properties:
+  #     - name: name
+  #       title: Name
+  #       type: text
+  #       readOnly: true
+  #     - name: email
+  #       title: E-mail address
+  #       type: email
+  #       readOnly: true
+  #     - name: subject
+  #       title: Subject
+  #       type: text
+  #       readOnly: true
+  #     - name: message
+  #       title: Message
+  #       type: textarea
+  #       readOnly: true
+  #     - name: date
+  #       title: Date
+  #       type: text
+  #       readOnly: true
+  #     - name: status
+  #       title: Status
+  #       type: select
+  #       defaultValue: open
+  #       options:
+  #         - label: 🔴 Open
+  #           value: open
+  #         - label: 🟡 Standby
+  #           value: standby
+  #         - label: 🟢 Closed
+  #           value: closed
+  #   index:
+  #     - name
+  #     - subject
+  #     - date
+  #     - status
+  #   sort:
+  #     - property: date
+  #       direction: descending
+
+  # - name: newsletter
+  #   title: Newsletter
+  #   singular: 'contact'
+  #   adminOperations:
+  #       create: false
+  #   publicAccess:
+  #       create: true
+  #   properties:
+  #     - name: email
+  #       label: E-mail
+  #       type: text
+  #       readOnly: true
+
+  - name: settings
+    title: System settings
+    singular: entry
+    hidden: true
+    properties:
+      - name: description
+        label: Description
+        type: textarea
+      - name: key
+        label: Key
+        type: text
+        required: true
+      - name: value
+        label: Value
+        type: text
+      - name: public
+        label: Visibility
+        type: select
+        required: true
+        options:
+          - label: Private
+            value: 0
+          - label: Public
+            value: 1
+    sort:
+        property: key
+  

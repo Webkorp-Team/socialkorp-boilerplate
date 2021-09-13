@@ -6,6 +6,9 @@
       {
         "ssr": true
       }
+    ],
+    [
+      "@babel/plugin-proposal-private-methods"
     ]
   ]
 }

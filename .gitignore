@@ -32,3 +32,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# firebase
+.firebase
+.firebaserc
+firebase-debug.log
+
+# minified config file
+src/api/website.config.json
