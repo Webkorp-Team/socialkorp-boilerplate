@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "clone-dashboard": "git submodule init && git submodule update && npm install && cd dashboard && npm install && cd functions && npm install",
+    "init": "git submodule init && git submodule update && npm install && cd dashboard && npm install && cd functions && npm install",
     "dev": "concurrently --names website,firebase \"npm run next-dev\" \"cd dashboard && npm run emulators\"",
     "build": "npm run handle-config && next build && next export -o build",
     "deploy": "npm run build && firebase deploy --only hosting",
