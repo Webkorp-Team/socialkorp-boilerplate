@@ -75,6 +75,9 @@ $ npm run deploy-all
 ```sh
 # Stash or commit changes before continuing.
 
-# Then merge upstream changes
+# Merge upstream changes
 $ git pull upstream main
+
+# Rerun init script
+$ npm run init
 ```
