@@ -5,17 +5,17 @@
 
 ## Setup fork
 
-Pick a project name and clone this repository:
+Pick a project name and clone the boilerplate repository:
 
 ```sh
-$ git clone <this repository> my-project
+$ git clone <boilerplate repository> my-project
 ```
 
 Setup origin and upstream
 
 ```sh
 $ git remote remove origin
-$ git remote add upstream <this repository>
+$ git remote add upstream <boilerplate repository>
 $ git remote add origin <your project repository>
 ```
 
