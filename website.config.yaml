@@ -1,9 +1,9 @@
 deploy:
-  url: https://website-sm-london.web.app
-  dashboardUrl: https://dashboard-sm-london.web.app
+  url: https://example.com
+  dashboardUrl: https://admin.example.com 
   firebase:
-    mainProject: website-sm-london
-    dashboardHosting: dashboard-sm-london
+    mainProject: example-website
+    dashboardHosting: example-admin
 
 devUrls: # do not change
   website: http://localhost:3000
