@@ -7,7 +7,7 @@ import { staticPageDataToProps, useLivePage } from 'api/WebsitePage';
 const pageName = 'terms';
 
 export default function TermsAndConditions({staticPageData={}}){
-  
+
   const {page} = useLivePage(pageName,staticPageData);
 
   const content = page.getSection('content');
@@ -18,7 +18,6 @@ export default function TermsAndConditions({staticPageData={}}){
   return (
     <>
       <Meta section={meta}/>
-      <Navbar section={footer}/>
       <Header section={header}/>
       <Content section={content} />
       <Footer section={footer}/>
