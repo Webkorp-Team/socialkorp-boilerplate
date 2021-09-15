@@ -6,9 +6,9 @@
     "init": "git submodule init && git submodule update && npm install && cd dashboard && npm install && cd functions && npm install",
     "dev": "concurrently --names website,firebase \"npm run next-dev\" \"cd dashboard && npm run emulators\"",
     "build": "npm run handle-config && next build && next export -o build",
-    "deploy": "npm run deploy-rewrites && npm run build && firebase deploy --only hosting",
+    "deploy": "npm run handle-config && npm run deploy-rewrites && npm run build && firebase deploy --only hosting",
     "deploy-all": "cd dashboard && npm run deploy-all && cd .. && npm run deploy",
-    "deploy-rewrites": "if [ ! -d build ]; then mkdir build && firebase deploy --only hosting; fi",
+    "deploy-rewrites": "if ! node ./rewrites-deployed.js; then mkdir -p build && firebase deploy --only hosting; fi",
     "handle-config": "node handle-config.js",
     "next-dev": "npm run handle-config && NODE_ENV='development' node server.js",
     "dashboard": "cd dashboard && npm run dev"
