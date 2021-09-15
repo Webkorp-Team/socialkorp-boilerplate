@@ -1,6 +1,6 @@
 deploy:
   url: https://example.com
-  dashboardUrl: https://admin.example.com 
+  dashboardUrl: https://admin.example.com
   firebase:
     mainProject: example-website
     dashboardHosting: example-admin
@@ -230,7 +230,7 @@ dashboard:
       textOverPrimary: '#fff'
       lightTextOverPrimary: '#fff8'
 
-      text: '#000'
+      text: '#444'
       lightText: '#0008'
 
       # background
