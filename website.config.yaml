@@ -1,9 +1,9 @@
 deploy:
-  url: https://example.com
-  dashboardUrl: https://admin.example.com 
+  url: https://website-sm-london.web.app
+  dashboardUrl: https://dashboard-sm-london.web.app
   firebase:
-    mainProject: example-website
-    dashboardHosting: example-admin
+    mainProject: website-sm-london
+    dashboardHosting: dashboard-sm-london
 
 devUrls: # do not change
   website: http://localhost:3000
@@ -92,12 +92,12 @@ pages:
     #     displayName:
     #       literal: Example.com | Website
 
-lists: 
+lists:
 
   # - name: services
   #   title: Services
   #   singular: service
-  #   materialIcons: 
+  #   materialIcons:
   #       create: add
   #   maxItems: 4
   #   publicAccess:
@@ -109,7 +109,7 @@ lists:
   #     - name: order
   #       title: Order
   #       type: select
-  #       options: 
+  #       options:
   #         - value: 0
   #           label: Any
   #         - value: 1
@@ -220,4 +220,32 @@ lists:
             value: 1
     sort:
         property: key
-  
+
+
+dashboard:
+  title: Webkorp
+  theme:
+    colors:
+      primary: '#1244FB'
+      textOverPrimary: '#fff'
+      lightTextOverPrimary: '#fff8'
+
+      text: '#000'
+      lightText: '#0008'
+
+      # background
+      background: '#f8f8f8'
+      contentBackground: '#fff'
+      cardBackground: '#f4f4f4'
+
+      # shades of gray
+      gray1: '#0002'
+      gray2: '#0004'
+      gray3: '#0006'
+
+      # status
+      error: '#f00' # red
+      warning: '#ff0' # orange
+      success: '#0f0' # green
+    assets:
+      logo: src/dashboard/assets/logo-webkorp-horizontal-black.svg
