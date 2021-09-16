@@ -6,7 +6,11 @@ const cache = {
 };
 
 export async function getSettings(){
-  return Api.get('/settings');
+  return await Api.get('/settings');
+}
+
+export function serverSideSettingsToProps(){
+  return async () => ({props:{serverSideSettings:await getSettings()}});
 }
 
 const promise = getSettings().then(result => {
