@@ -102,6 +102,11 @@ lists:
   #   maxItems: 4
   #   publicAccess:
   #       read: true
+  #   cache:
+  #     item: false
+  #     index:
+  #       ttl: 1800 # reduces firestore costs
+  #   limit: 50
   #   properties:
   #     - name: name
   #       title: Service name
