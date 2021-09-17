@@ -11,7 +11,8 @@
     "deploy-rewrites": "if ! node ./rewrites-deployed.js; then mkdir -p build && firebase deploy --only hosting; fi",
     "handle-config": "node handle-config.js",
     "next-dev": "npm run handle-config && NODE_ENV='development' node server.js",
-    "dashboard": "cd dashboard && npm run dev"
+    "dashboard": "cd dashboard && npm run dev",
+    "emulators": "cd dashboard && npm run emulators"
   },
   "dependencies": {
     "form-serialize": "^0.7.2",
