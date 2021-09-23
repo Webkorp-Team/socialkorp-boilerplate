@@ -84,7 +84,9 @@ export default function ContentEditable({
     ...(previewing ? previewingProps : propsFromAbove)
   };
 
-  const children = section ? section.get(elementName) : childrenFromProps;
+  const children = (section ? section.get(elementName) : childrenFromProps) || (
+    previewing ? '<empty>' : null
+  );
 
   const renderingResult = (
     Component ? <Component {...props} children={children}/> :

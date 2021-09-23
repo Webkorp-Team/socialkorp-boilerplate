@@ -31,7 +31,7 @@ export class Section extends ExtendableMap{
   }
   get(elementName){
     const value = super.get(elementName);
-    return !value?.trim() ? '<empty>' : value;
+    return !value?.trim() ? null : value;
   }
   set(elementName,value){
     return super.set(elementName,value);
