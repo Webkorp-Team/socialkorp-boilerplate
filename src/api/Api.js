@@ -10,7 +10,7 @@ async function performRequest(method,url,payload=undefined,token=undefined){
 
   const haveBody = !['GET','HEAD'].includes(method);
 
-  const query = (haveBody || !payload) ? '' : '?'+queryString.stringify(payload);
+  const query = (haveBody || !payload) ? '' : '?'+queryString.stringify({_body:JSON.stringify(payload)});
 
   const response = await fetch(`${url}${query}`,{
     method,
