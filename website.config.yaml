@@ -253,4 +253,4 @@ dashboard:
       warning: '#ff0' # orange
       success: '#0f0' # green
     assets:
-      logo: src/dashboard/assets/logo-webkorp-horizontal-black.svg
+      logo: src/assets/logo-webkorp-horizontal-black.svg
