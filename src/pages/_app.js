@@ -6,6 +6,8 @@ import cssReset from 'css-config/css-reset';
 import viewport from 'css-config/viewport';
 import fonts from 'css-config/fonts';
 import mediaQueries from 'css-config/media-queries';
+import CodeVersion from 'components/CodeVersion';
+import Head from 'next/head';
 
 const {
   GlobalStyles,
@@ -15,11 +17,15 @@ const {
   viewport,
   fonts,
   mediaQueries,
-}); 
+});
 
 function App({ Component, pageProps }) {
   return (
     <>
+
+      <Head>
+        <CodeVersion/>
+      </Head>
       <GlobalStyles/>
       <ThemeProvider theme={ theme }>
         <StyleSheetManager stylisPlugins={plugins}>

@@ -1,15 +1,16 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
+const path = require('path');
 
 const config = JSON.parse(
-  fs.readFileSync('src/api/website.config.json')
+  fs.readFileSync(path.resolve(process.cwd(),'./src/api/website.config.json'))
 );
 
-const path = `${config.deploy.url}/api/v1/website/page`;
+const url = `${config.deploy.url}/api/v1/website/page`;
 
-console.log(`Testing ${path}`);
+console.log(`Testing ${url}`);
 
-fetch(path).then(result => {
+fetch(url).then(result => {
   if(result.ok){
     console.log('Ok');
     process.exit(0);
