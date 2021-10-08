@@ -41,3 +41,8 @@ firebase-debug.log
 
 # minified config file
 src/api/website.config.json
+
+# auto generated pwa assets
+/public/**
+/src/api/favicons-meta.html.json
+/src/api/favicons-checksum.json

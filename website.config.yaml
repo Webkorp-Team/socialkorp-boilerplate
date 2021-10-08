@@ -10,6 +10,13 @@ devUrls: # do not change
   proxyTo: http://localhost:5000
   dashboard: http://localhost:8000
 
+pwa:
+  name: Socialkorp Example App
+  shortName: Example
+  themeColor: '#FFFFFF'
+  backgroundColor: '#FFFFFF'
+  icon: src/assets/logo-webkorp-black-nopadding.png
+
 pages:
 
   - name: homepage

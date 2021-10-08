@@ -1,5 +1,6 @@
 const fs = require('fs');
 const TerserPlugin = require('terser-webpack-plugin');
+const withPWA = require('next-pwa');
 
 const firebaseConfig = JSON.parse(
   fs.readFileSync('./firebase.json')
@@ -12,8 +13,13 @@ const rewrites = (firebaseConfig.hosting.rewrites || []).filter(
   destination: rw.destination.replace(/(?<=\/)index.html$/,''),
 }));
 
-module.exports = {
+module.exports = withPWA({
   trailingSlash: true,
+
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+  },
 
   rewrites: async()=>rewrites,
 
@@ -30,4 +36,4 @@ module.exports = {
 
     return config;
   },
-}
+});
