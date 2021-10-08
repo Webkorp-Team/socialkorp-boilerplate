@@ -6,6 +6,7 @@ const Header = ({ section, preview }) => {
   return (
     <S.Root>
       <ContentEditable section={section} elementName="headline" component={S.Headline}/>
+      Ready
     </S.Root>
   )
 };

@@ -8,7 +8,7 @@ const Content = ({ section }) => {
 
   const settings = useSettings();
 
-  const count = Number(settings?.website.terms.sectionCount) || 1;
+  const count = Number(settings?.website?.terms.sectionCount) || 1;
 
   return (
     <S.Root>
