@@ -10,10 +10,11 @@
     "deploy-all": "cd dashboard && npm run deploy-all && cd .. && npm run deploy",
     "deploy-rewrites": "if ! node scripts/rewrites-deployed.js; then mkdir -p build && firebase deploy --only hosting; fi",
     "handle-config": "node scripts/handle-config.js && node scripts/setup-pwa.js",
-    "next-dev": "npm run handle-config && npm run dump-code-version && NODE_ENV='development' node scripts/server.js",
+    "next-dev": "npm run wait-for-emulators && npm run handle-config && npm run dump-code-version && NODE_ENV='development' node scripts/server.js",
     "dashboard": "cd dashboard && npm run dev",
     "emulators": "cd dashboard && npm run emulators",
-    "dump-code-version": "./scripts/get-code-version.sh > src/code-version.json"
+    "dump-code-version": "./scripts/get-code-version.sh > src/code-version.json",
+    "wait-for-emulators": "./scripts/wait-for-emulators.sh"
   },
   "dependencies": {
     "favicons": "^6.2.2",
