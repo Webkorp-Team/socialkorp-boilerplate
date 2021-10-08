@@ -43,6 +43,19 @@ firebase-debug.log
 src/api/website.config.json
 
 # auto generated pwa assets
-/public/**
-/src/api/favicons-meta.html.json
-/src/api/favicons-checksum.json
+/public/android-chrome-*.png
+/public/apple-touch-*.png
+/public/favicon-*.png
+/public/firefox_app_*.png
+/public/mstile-*.png
+/public/coast-*.png
+/public/yandex-browser-*.png
+/public/favicon.ico
+/public/browserconfig.xml
+/public/manifest.json
+/public/manifest.webapp
+/public/yandex-browser-manifest.json
+/public/sw.js
+/public/workbox-*.js
+/src/api/pwa-meta.html.json
+/src/api/pwa-settings-checksum.json

@@ -9,15 +9,15 @@ const favicons = require('favicons');
 const source = config.pwa.icon;
 
 const checksum = crypto.createHash('sha256').update(
-  fs.readFileSync(source)
+  fs.readFileSync(source)+JSON.stringify(config.pwa)
 ).digest('hex');
 
-const versionFile = resolve('./src/api/favicons-checksum.json');
+const checksumFile = resolve('./src/api/pwa-settings-checksum.json');
 
 if(
-  fs.existsSync(versionFile)
+  fs.existsSync(checksumFile)
   && JSON.parse(
-    fs.readFileSync(versionFile)
+    fs.readFileSync(checksumFile)
   ) === checksum
 )
   return;
@@ -85,7 +85,7 @@ favicons(source, configuration,(error,response) => {
     );
   const htmlContents = JSON.stringify(response.html.join("\n"));
   fs.writeFileSync(
-    resolve(`./src/api/favicons-meta.html.json`),
+    resolve(`./src/api/pwa-meta.html.json`),
     htmlContents
   );
 
@@ -104,5 +104,5 @@ favicons(source, configuration,(error,response) => {
   );
 
 
-  fs.writeFileSync(versionFile,JSON.stringify(checksum));
+  fs.writeFileSync(checksumFile,JSON.stringify(checksum));
 });
