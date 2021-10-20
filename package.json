@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "init": "git submodule init && git submodule update && yarn install && cd dashboard && yarn install && cd functions && yarn install && yarn run handle-config",
+    "postinstall": "git submodule init && git submodule update && cd dashboard && yarn install && cd functions && yarn install && yarn run handle-config",
     "dev": "concurrently --names website,firebase \"yarn run next-dev\" \"cd dashboard && yarn run emulators\"",
     "build": "yarn run dump-code-version && yarn run handle-config && next build && next export -o build",
     "deploy": "yarn run handle-config && yarn run deploy-rewrites && yarn run build && firebase deploy --only hosting",
