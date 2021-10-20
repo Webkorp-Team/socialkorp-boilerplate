@@ -136,8 +136,9 @@ lists:
   #       type: file
   #       accept: image/png
   #   sort:
-  #       property: order
-  #       direction: ascending
+  #       - property: order
+  #         direction: ascending
+  #         type: number
   #   listing:
   #     - name
   #     - order
