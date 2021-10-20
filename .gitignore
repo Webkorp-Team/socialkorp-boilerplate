@@ -59,3 +59,6 @@ src/api/website.config.json
 /public/workbox-*.js
 /src/api/pwa-meta.html.json
 /src/api/pwa-settings-checksum.json
+
+# temporary config files used in dev container
+/.remote-config
