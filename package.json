@@ -3,16 +3,16 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "init": "git submodule init && git submodule update && npm install && cd dashboard && npm install && cd functions && npm install && npm run handle-config",
-    "dev": "concurrently --names website,firebase \"npm run next-dev\" \"cd dashboard && npm run emulators\"",
-    "build": "npm run dump-code-version && npm run handle-config && next build && next export -o build",
-    "deploy": "npm run handle-config && npm run deploy-rewrites && npm run build && firebase deploy --only hosting",
-    "deploy-all": "cd dashboard && npm run deploy-all && cd .. && npm run deploy",
+    "init": "git submodule init && git submodule update && yarn install && cd dashboard && yarn install && cd functions && yarn install && yarn run handle-config",
+    "dev": "concurrently --names website,firebase \"yarn run next-dev\" \"cd dashboard && yarn run emulators\"",
+    "build": "yarn run dump-code-version && yarn run handle-config && next build && next export -o build",
+    "deploy": "yarn run handle-config && yarn run deploy-rewrites && yarn run build && firebase deploy --only hosting",
+    "deploy-all": "cd dashboard && yarn run deploy-all && cd .. && yarn run deploy",
     "deploy-rewrites": "if ! node scripts/rewrites-deployed.js; then mkdir -p build && firebase deploy --only hosting; fi",
     "handle-config": "node scripts/handle-config.js && node scripts/setup-pwa.js",
-    "next-dev": "npm run wait-for-emulators && npm run handle-config && npm run dump-code-version && NODE_ENV='development' node scripts/server.js",
-    "dashboard": "cd dashboard && npm run dev",
-    "emulators": "cd dashboard && npm run emulators",
+    "next-dev": "yarn run wait-for-emulators && yarn run handle-config && yarn run dump-code-version && NODE_ENV='development' node scripts/server.js",
+    "dashboard": "cd dashboard && yarn run dev",
+    "emulators": "cd dashboard && yarn run emulators",
     "dump-code-version": "./scripts/get-code-version.sh > src/code-version.json",
     "wait-for-emulators": "./scripts/wait-for-emulators.sh"
   },
@@ -30,7 +30,7 @@
     "react-dom": "17.0.2",
     "react-html-parser": "^2.0.2",
     "styled-components": "^5.3.0",
-    "styled-components-responsive-toolkit": "github:Webkorp-Team/styled-components-responsive-toolkit"
+    "styled-components-responsive-toolkit": "https://github.com/Webkorp-Team/styled-components-responsive-toolkit#v0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
