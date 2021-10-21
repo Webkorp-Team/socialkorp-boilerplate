@@ -2,6 +2,8 @@
 # Boilerplate for Socialkorp websites
 
 > Includes frontend boilerplate + backend + dashboard.
+> 
+> Also includes a Docker based VS Code development container.
 
 ## Setup fork
 
@@ -33,10 +35,10 @@ Preserve version number as it will track this project's version number.
 
 ## Getting Started
 
-Pull dashboard submodule + install dependencies for website, dashboard and backend:
+Install dependencies:
 
 ```sh
-$ npm run init
+$ yarn install
 ```
 
 Set Firebase project and dashboard hosting in `website.config.yaml` @ `deploy.firebase`:
@@ -51,33 +53,33 @@ deploy:
 Start development:
 
 ```sh
-# Run website + backend
-$ npm run dev
+# To run website + backend
+$ yarn dev
 ```
 
 ```sh
-# or run dashboard + backend
-$ npm run dashboard
+# To run dashboard + backend
+$ yarn dashboard
 ```
 
 To deploy:
 
 ```sh
-# Deploy website frontend
-$ npm run deploy
+# To deploy website frontend
+$ yarn deploy
 
-# Deploy website + backend + dashboard (needed only once)
-$ npm run deploy-all
+# To deploy website + backend + dashboard (only needed if website.config.yaml has changed)
+$ yarn deploy-all
 ```
 
 ## Update boilerplate from upstream
 
 ```sh
-# Stash or commit changes before continuing.
+# Note: stash or commit any changes before continuing.
 
-# Merge upstream changes
+# To merge upstream changes
 $ git pull upstream main
 
-# Rerun init script
-$ npm run init
+# Rerun install script
+$ yarn install
 ```
