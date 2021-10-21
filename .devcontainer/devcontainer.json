@@ -25,13 +25,8 @@
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node",
 
-	"initializeCommand":["mkdir -p .remote-config/.ssh && mkdir -p .remote-config/.config/configstore && cp -r ~/.ssh/. .remote-config/.ssh && cp -r ~/.config/configstore/. .remote-config/.config/configstore && cp ~/.gitconfig .remote-config/.gitconfig"],
-
-	"mounts":[
-		"type=bind,source=${localWorkspaceFolder}/.remote-config/.config/configstore,target=/home/node/.config/configstore",
-		"type=bind,source=${localWorkspaceFolder}/.remote-config/.ssh,target=/home/node/.ssh",
-		"type=bind,source=${localWorkspaceFolder}/.remote-config/.gitconfig,target=/home/node/.gitconfig"
-	],
+	"initializeCommand":["mkdir -p .remote-config && rm -r .remote-config && mkdir -p .remote-config/.ssh && mkdir -p .remote-config/.config/configstore && cp -r ~/.ssh/. .remote-config/.ssh && cp -r ~/.config/configstore/. .remote-config/.config/configstore && cp ~/.gitconfig .remote-config/.gitconfig"],
+	"postAttachCommand":["cp -r .remote-config/.ssh/. ~/.ssh/ && cp -r .remote-config/.config/configstore/. ~/.config/configstore && cp .remote-config/.gitconfig ~/.gitconfig"],
 
 	"settings": {
 		"remote.autoForwardPorts": false
