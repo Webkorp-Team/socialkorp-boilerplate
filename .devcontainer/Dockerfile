@@ -15,4 +15,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN su node -c "yarn global add firebase-tools@9.20.0"
 RUN su node -c "mkdir -p ~/.ssh"
 RUN su node -c "mkdir -p ~/.config/configstore"
-RUN su node -c "git config --global pull.rebase false"
+RUN su node -c "echo 'cp -r \$WORKSPACE_FOLDER/.remote-config/. ~/' >> ~/.bashrc"
