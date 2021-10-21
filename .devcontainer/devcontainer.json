@@ -11,9 +11,6 @@
 		// "args": { "VARIANT": "16-bullseye" }
 	},
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"dbaeumer.vscode-eslint"
@@ -34,5 +31,14 @@
 		"type=bind,source=${localWorkspaceFolder}/.remote-config/.config/configstore,target=/home/node/.config/configstore",
 		"type=bind,source=${localWorkspaceFolder}/.remote-config/.ssh,target=/home/node/.ssh",
 		"type=bind,source=${localWorkspaceFolder}/.remote-config/.gitconfig,target=/home/node/.gitconfig"
+	],
+
+	"settings": {
+		"remote.autoForwardPorts": false
+	},
+	"forwardPorts": [
+		3000, // website frontend
+		8000, // dashboard frontend
+		5000,  // firebase backend
 	],
 }
