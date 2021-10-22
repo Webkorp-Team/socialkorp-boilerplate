@@ -32,13 +32,16 @@ const reportPath = '/lighthouse'
 fs.mkdirSync(`build${reportPath}`,{recursive:true});
 fs.writeFileSync(`build${reportPath}/index.html`, report);
 
+const deploy = !process.argv.includes('--no-deploy');
+
 var err = null;
-try {
-  console.log('Deploying report...');
-  await exec('yarn run deploy-only');
-} catch (e) {
-  err = e;
-} 
+if(deploy)
+  try {
+    console.log('Deploying report...');
+    await exec('yarn run deploy-only');
+  } catch (e) {
+    err = e;
+  } 
 
 console.log(
   `\nLighthouse scores:\n\n${Object.values(lhr.categories).map(c => (
@@ -48,7 +51,7 @@ console.log(
 
 if(err)
     console.error(err);
-else
+else if(deploy)
     console.log(`Full report: ${url}${reportPath}\n`);
 
 await browser.close();
