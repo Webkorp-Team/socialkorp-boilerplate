@@ -6,6 +6,14 @@ const resolve = filename => path.resolve(root,filename);
 const config = require(resolve('./src/api/website.config.json'));
 const favicons = require('favicons');
 
+if(!config.pwa){
+  fs.writeFileSync(
+    resolve(`./src/api/pwa-meta.html.json`),
+    '"<!-- -->"'
+  );
+  return;
+}
+
 const source = config.pwa.icon;
 
 const checksum = crypto.createHash('sha256').update(
@@ -56,11 +64,11 @@ const configuration = {
     android: {offset:24}, // Create Android homescreen icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     appleIcon: {offset:24}, // Create Apple touch icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     appleStartup: {offset:14}, // Create Apple startup images. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    coast: true, // Create Opera Coast icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    coast: false,//true // Create Opera Coast icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     favicons: true, // Create regular favicons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    firefox: {offset:24}, // Create Firefox OS icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    firefox: false,//{offset:24}, // Create Firefox OS icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     windows: {offset:24}, // Create Windows 8 tile icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    yandex: true, // Create Yandex browser icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    yandex: false,//true // Create Yandex browser icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
   },
 };
 
