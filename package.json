@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "git submodule init && git submodule update && cd dashboard && yarn install && cd functions && yarn install && yarn run handle-config",
-    "dev": "concurrently --names website,firebase \"yarn run next-dev\" \"cd dashboard && yarn run emulators\"",
+    "dev": "concurrently --names website,firebase,config \"yarn run next-dev\" \"cd dashboard && yarn run emulators\" \"yarn run watch-config\"",
     "start": "yarn run dev",
     "build": "yarn run dump-code-version && yarn run handle-config && next build && next export -o build",
     "deploy": "yarn run handle-config && yarn run deploy-rewrites && yarn run build && yarn run deploy-only",
@@ -17,7 +17,8 @@
     "dump-code-version": "./scripts/get-code-version.sh > src/code-version.json",
     "wait-for-emulators": "./scripts/wait-for-emulators.sh",
     "deploy-only": "firebase deploy --only hosting",
-    "lighthouse": "node ./scripts/lighthouse.js"
+    "lighthouse": "node ./scripts/lighthouse.js",
+    "watch-config": "cd dashboard/functions && yarn run watch-config"
   },
   "dependencies": {
     "favicons": "^6.2.2",
