@@ -23,7 +23,7 @@ export default function Home({staticPageData={}}){
       <Meta section={meta}/>
       <Header section={header} />
       {/* <Content section={content} services={services}/> */}
-      <Footer section={footer} />
+      {/* <Footer section={footer} /> */}
     </>  
   )
 }

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { cloneElement, createElement, createContext, useCallback, useContext, useMemo } from "react";
+import { cloneElement, createElement, createContext, useCallback, useContext, useMemo, useState, Fragment, useEffect } from "react";
 import styled from "styled-components";
 
 const onUpdateContext = createContext(()=>{});
@@ -39,23 +39,35 @@ const Span = styled.span`
   color: inherit;
 `;
 
+
+
 export default function ContentEditable({
   elementName,
   section,
   children: childrenFromProps,
   component: Component,
   readOnly,
+  parserComponent = Fragment,
   ...propsFromAbove
 }){
 
+  const [focus, setFocus] = useState(false);
+  const [counter, setCounter] = useState(0);
+
   const onUpdate = useOnEditableElementUpdate();
 
-  const handleUpdate = useCallback((e)=>{
+  const handleBlur = useCallback((e)=>{
+    setFocus(false);
+    setCounter(x=>x+1);
     return onUpdate({
       elementName,
       value: e.target.innerText,
     });
   },[onUpdate]);
+
+  const handleFocus = useCallback(()=>{
+    setFocus(true);
+  },[]);
 
   const previewingProps = {
     contentEditable: true,
@@ -64,7 +76,9 @@ export default function ContentEditable({
       if(e.keyCode===27)//esc
         e.target.blur();
     },
-    onBlur: handleUpdate,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    key: counter,
     ...propsFromAbove
   };
 
@@ -84,8 +98,14 @@ export default function ContentEditable({
     ...(previewing ? previewingProps : propsFromAbove)
   };
 
-  const children = (section ? section.get(elementName) : childrenFromProps) || (
-    previewing ? '<empty>' : null
+  const ParserComponent = previewing && focus ? Fragment : parserComponent;
+
+  const children = (
+    <ParserComponent>
+      {(section ? section.get(elementName) : childrenFromProps) || (
+        previewing ? '<empty>' : null
+      )}
+    </ParserComponent>
   );
 
   const renderingResult = (

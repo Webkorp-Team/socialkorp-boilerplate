@@ -34,6 +34,7 @@ const configuration = {
   path: '/', // Path for overriding default icons path. `string`
   appName: config.pwa.name, // Your application's name. `string`
   appShortName: config.pwa.shortName, // Your application's short_name. `string`. Optional. If not set, appName will be used
+  appDescription: config.pwa.description,
   background: config.pwa.backgroundColor, // Background colour for flattened icons. `string`
   theme_color: config.pwa.themeColor, // Theme color user for example in Android's task switcher. `string`
 
@@ -50,6 +51,7 @@ const configuration = {
   logging: true, // Print logs to console? `boolean`
   pixel_art: false, // Keeps pixels "sharp" when scaling up, for pixel art.  Only supported in offline mode.
   loadManifestWithCredentials: false, // Browsers don't send cookies when fetching a manifest, enable this to fix that. `boolean`
+  manifestMaskable: true,
   icons: {
     // Platform Options:
     // - offset - offset in percentage
@@ -61,11 +63,11 @@ const configuration = {
     //   * overlayGlow - apply glow effect after mask has been applied (applied by default for firefox). `boolean`
     //   * overlayShadow - apply drop shadow after mask has been applied .`boolean`
     //
-    android: {offset:24}, // Create Android homescreen icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    appleIcon: {offset:24}, // Create Apple touch icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    appleStartup: {offset:14}, // Create Apple startup images. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
-    coast: false,//true // Create Opera Coast icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    android: {offset:16}, // Create Android homescreen icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    appleIcon: {offset:16}, // Create Apple touch icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     favicons: true, // Create regular favicons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    appleStartup: false, // Create Apple startup images. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
+    coast: false,//true // Create Opera Coast icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     firefox: false,//{offset:24}, // Create Firefox OS icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     windows: false,//{offset:24}, // Create Windows 8 tile icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
     yandex: false,//true // Create Yandex browser icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }` or an array of sources
@@ -97,19 +99,19 @@ favicons(source, configuration,(error,response) => {
     htmlContents
   );
 
-  // todo: remove this section of code and make use of favicons API directly
-  // see https://github.com/itgalaxy/favicons/pull/336
-  const manifest = JSON.parse(fs.readFileSync(
-    resolve(`./public/manifest.json`),
-  ));
-  manifest.icons = manifest.icons.map(icon => ({
-    ...icon,
-    purpose: 'any maskable',
-  }));
-  fs.writeFileSync(
-    resolve(`./public/manifest.json`),
-    JSON.stringify(manifest)
-  );
+  // // todo: remove this section of code and make use of favicons API directly
+  // // see https://github.com/itgalaxy/favicons/pull/336
+  // const manifest = JSON.parse(fs.readFileSync(
+  //   resolve(`./public/manifest.json`),
+  // ));
+  // manifest.icons = manifest.icons.map(icon => ({
+  //   ...icon,
+  //   purpose: 'any maskable',
+  // }));
+  // fs.writeFileSync(
+  //   resolve(`./public/manifest.json`),
+  //   JSON.stringify(manifest)
+  // );
 
 
   fs.writeFileSync(checksumFile,JSON.stringify(checksum));

@@ -12,6 +12,7 @@ devUrls: # do not change
 
 pwa:
   name: Socialkorp Example App
+  description: Example app
   shortName: Example
   themeColor: '#FFFFFF'
   backgroundColor: '#FFFFFF'
