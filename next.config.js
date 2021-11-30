@@ -6,6 +6,9 @@ const root = process.cwd();
 const resolve = filename => path.resolve(root,filename);
 const config = require(resolve('./src/api/website.config.json'));
 const firebaseConfig = require(resolve('./firebase.json'));
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const rewrites = (firebaseConfig.hosting.rewrites || []).filter(
   rw => rw.destination && rw.source !== '**'
@@ -14,27 +17,38 @@ const rewrites = (firebaseConfig.hosting.rewrites || []).filter(
   destination: rw.destination.replace(/(?<=\/)index.html$/,''),
 }));
 
-module.exports = withPWA({
-  trailingSlash: true,
+module.exports =
+  withBundleAnalyzer(
+  withPWA(
+  {
+    trailingSlash: true,
 
-  pwa: {
-    dest: 'public',
-    disable: !config.pwa || process.env.NODE_ENV === 'development',
-  },
+    pwa: {
+      dest: 'public',
+      disable: !config.pwa || process.env.NODE_ENV === 'development',
+    },
 
-  rewrites: async()=>rewrites,
+    rewrites: async()=>rewrites,
 
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
 
-    config.optimization.minimizer = [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: {
-          compress: { evaluate: false }
-        },
-      }),
-    ];
+      config.optimization.minimizer = [
+        new TerserPlugin({
+          parallel: true,
+          terserOptions: {
+            compress: { evaluate: false }
+          },
+        }),
+      ];
 
-    return config;
-  },
-});
+      // config.resolve.alias = {
+      //   "react": "preact/compat",
+      //   "react-dom/test-utils": "preact/test-utils",
+      //   "react-dom": "preact/compat",     // Must be below test-utils
+      //   "react/jsx-runtime": "preact/jsx-runtime"
+      // }
+
+      return config;
+    },
+  }
+));

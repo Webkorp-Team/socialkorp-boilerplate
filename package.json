@@ -18,7 +18,8 @@
     "wait-for-emulators": "./scripts/wait-for-emulators.sh",
     "deploy-only": "firebase deploy --only hosting",
     "lighthouse": "node ./scripts/lighthouse.js",
-    "watch-config": "cd dashboard/functions && yarn run watch-config"
+    "watch-config": "cd dashboard/functions && yarn run watch-config",
+    "analyze": "ANALYZE=true yarn build && mv .next/analyze/client.html .next/analyze/index.html && serve .next/analyze"
   },
   "dependencies": {
     "favicons": "https://github.com/Webkorp-Team/favicons#js",
@@ -41,12 +42,14 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "@next/bundle-analyzer": "^12.0.3",
     "@types/styled-components": "^5.1.15",
     "babel-plugin-styled-components": "^1.12.0",
     "concurrently": "^6.2.1",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1",
     "node-fetch": "^2.6.1",
+    "serve": "^13.0.2",
     "terser-webpack-plugin": "^5.2.0"
   },
   "packageManager": "yarn@^1.22.5"
