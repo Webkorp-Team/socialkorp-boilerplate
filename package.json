@@ -36,11 +36,12 @@
     "react-html-parser": "^2.0.2",
     "react-markdown": "^7.1.0",
     "styled-components": "^5.3.0",
-    "styled-components-responsive-toolkit": "https://github.com/Webkorp-Team/styled-components-responsive-toolkit#v0.2.1"
+    "styled-components-responsive-toolkit": "https://github.com/Webkorp-Team/styled-components-responsive-toolkit.git#v0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "@types/styled-components": "^5.1.15",
     "babel-plugin-styled-components": "^1.12.0",
     "concurrently": "^6.2.1",
     "express": "^4.17.1",
