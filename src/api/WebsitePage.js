@@ -1,4 +1,3 @@
-import { Map } from "immutable";
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { resolvePromises } from "utils/promises-utils";
 import Api from "./Api";
@@ -6,20 +5,23 @@ import config from './website.config.json';
 
 class ExtendableMap{
   #map;
-  constructor(data={}){
+  constructor(data={},reuse=false){
     if(data instanceof ExtendableMap)
       return data;
-    this.#map = Map(data);
+    this.#map = reuse ? data : {...data};
   }
   set(key,value){
-    const newMap = this.#map.set(key,value);
-    if(newMap === this.#map)
+    if(this.#map[key] === value)
       return this;
-    return new this.constructor(newMap);
+    const newMap = {
+      ...this.#map,
+      [key]: value
+    };
+    return new this.constructor(newMap,true);
   }
-  get(key){ return this.#map.get(key); }
-  toObject(){ return this.#map.toObject(); }
-  keys(){ return this.#map.keys(); }
+  get(key){ return this.#map[key]; }
+  toObject(){ return {...this.#map} }
+  keys(){ return Object.keys(this.#map) }
   toString(){
     return `ExtendableMap`;
   }

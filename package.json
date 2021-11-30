@@ -24,7 +24,6 @@
     "favicons": "https://github.com/Webkorp-Team/favicons#js",
     "form-serialize": "^0.7.2",
     "image-blob-reduce": "^3.0.1",
-    "immutable": "^4.0.0-rc.14",
     "js-yaml": "^4.1.0",
     "lighthouse": "^8.5.1",
     "next": "^11.1.2",
