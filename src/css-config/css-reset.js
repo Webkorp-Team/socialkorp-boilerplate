@@ -1,6 +1,7 @@
 const { css } = require("styled-components");
 
 const cssReset = () => css`
+  /* @todo: sort rules alphabetically */
   *{
     padding: 0;
     margin: 0;
@@ -18,9 +19,10 @@ const cssReset = () => css`
     cursor: pointer;
     text-decoration: none;
   }
-  article, aside, details, figcaption, figure, 
+  article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
+    overflow: auto;
   }
   html{
     max-width: 100vw;
