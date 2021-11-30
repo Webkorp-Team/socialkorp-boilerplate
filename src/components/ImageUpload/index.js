@@ -1,23 +1,16 @@
 import { cloneElement, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import randomstring from 'randomstring';
 import { useOnEditableElementUpdate } from "components/ContentEditable";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import imageBlobReduce from 'image-blob-reduce';
+import generateRandomString from "utils/generate-random-string";
+import dynamic from 'next/dynamic'
+
+const InputBlobReducer = dynamic(() => import('./InputBlobReducer'));
 
 const placeholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolA\
 AAABlBMVEV6enoYGBg7fN05AAAAAnRSTlO/v04Q0VIAAAB/SURBVGje5c4xDQAADMOw8ie9MehtqcrrI8n1VgCwQ\
 ABiAgDAAgGICQAACwQgJgAALBCAmAAAsEAAYgIAwAIBiAkAAAsEICYAACwQgJgAALBAAGICAMACAYgJAAALBCAmA\
 AAsEICYAACwQABiAgDAAgGICQAACwQgJgAALAjgAYpp8OIKb2kyAAAAAElFTkSuQmCC";
-
-const reducer = imageBlobReduce();
-reducer._create_blob = function (env) {
-  return this.pica.toBlob(env.out_canvas, 'image/jpeg', 0.85)
-    .then(function (blob) {
-      env.out_blob = blob;
-      return env;
-    });
-};
 
 const Img = styled.img`
 
@@ -43,6 +36,7 @@ const ImageUpload = forwardRef(function _ImageUpload({
   children,
   component: Component,
   src: srcFromProps,
+  initialSrc,
   attribute='src',
   ...propsFromAbove
 },ref){
@@ -56,7 +50,7 @@ const ImageUpload = forwardRef(function _ImageUpload({
   const [id, setId] = useState('null');
 
   useEffect(()=>{
-    setId(`fileinput--${randomstring.generate(8)}`);
+    setId(`fileinput--${generateRandomString()}`);
   },[]);
 
   const [src, setSrc] = useState(srcFromProps);
@@ -67,32 +61,23 @@ const ImageUpload = forwardRef(function _ImageUpload({
       return;
     }
     const url = section.get(elementName);
-    if(!url)
-      return;
-    else if(url === '<empty>')
-      setSrc(previewing ? placeholder : undefined);
+    if(!url || url === '<empty>')
+      setSrc(previewing ? srcFromProps || placeholder : srcFromProps || undefined);
+    else if (url === initialSrc)
+      setSrc(srcFromProps || url);
     else
       setSrc(src => url.startsWith('data:') && src ? src : url);
   },[srcFromProps,section,elementName,previewing]);
 
   const onUpdate = useOnEditableElementUpdate();
 
-  const handleChange = useCallback((e)=>{
-    if(!e.target.files[0])
-      return;
-    reducer.toBlob(e.target.files[0],{max:1600}).then(resizedImage => {
-      const reader = new FileReader();
-      reader.addEventListener("load", function () {
-        setSrc(URL.createObjectURL(resizedImage));
-        onUpdate({
-          elementName,
-          value: reader.result,
-        });
-      }, false);
-      reader.readAsDataURL(resizedImage);
+  const handleChange = useCallback((result)=>{
+    setSrc(result.display);
+    onUpdate({
+      elementName,
+      value: result.value,
     });
-  },[onUpdate,elementName]);
-
+  },[onUpdate,elementName,setSrc]);
   
   const props = {
     ...propsFromAbove,
@@ -111,7 +96,7 @@ const ImageUpload = forwardRef(function _ImageUpload({
 
   return previewing ? (
     <Label htmlFor={id}>
-      <input onChange={handleChange} id={id} type="file" accept="image/*" style={{display:'none'}} />
+      <InputBlobReducer onChange={handleChange} id={id} style={{display:'none'}} />
       {renderingResult}
     </Label>
   ) : renderingResult;
