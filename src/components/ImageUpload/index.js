@@ -24,7 +24,7 @@ const Img = styled.img`
 `;
 
 const Label = styled.label`
-  &[data-previewing=true] > *{
+  & > *{
     border: 1px dashed transparent;
     cursor: crosshair;
     transition: filter 200ms opacity 200ms;
@@ -109,9 +109,9 @@ const ImageUpload = forwardRef(function _ImageUpload({
     <Img {...props}/>
   );
 
-  return editable ? (
-    <Label data-previewing={previewing} htmlFor={id}>
-      {previewing ? <input onChange={handleChange} id={id} type="file" accept="image/*" style={{display:'none'}} /> : null}
+  return previewing ? (
+    <Label htmlFor={id}>
+      <input onChange={handleChange} id={id} type="file" accept="image/*" style={{display:'none'}} />
       {renderingResult}
     </Label>
   ) : renderingResult;
