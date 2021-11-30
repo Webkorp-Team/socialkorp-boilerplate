@@ -9,8 +9,8 @@ export async function getListIndex(listName){
   return await Api.get('/list/index',{listName});
 }
 
-export default function useListIndex(listName){
-  const [index, setIndex] = useState(cache[listName]||[]);
+export default function useListIndex(listName,placeholder=[]){
+  const [index, setIndex] = useState(cache[listName]||placeholder);
 
   useEffect(()=>{
     if(cache[listName])
