@@ -1,13 +1,25 @@
 import mediaQueries from "css-config/media-queries";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useMediaQuery from "./use-media-query";
 
-
+const cache = {
+  height: null,
+};
 
 export default function useWindowHeight(){
-  const [height, setHeight] = useState();
+  const [height, _setHeight] = useState(cache.height);
   const portrait = useMediaQuery(mediaQueries.portrait);
-  const [polling, setPolling] = useState(true);
+  const [polling, setPolling] = useState(!cache.height);
+
+  const setHeight = useCallback((functionOrValue)=>{
+    _setHeight(x => {
+      const value = typeof functionOrValue === 'function' ? (
+        functionOrValue(x)
+      ):functionOrValue;
+      cache.height = value;
+      return value;
+    });
+  },[]);
 
   useEffect(()=>{
     const handleResize = ()=>{
@@ -25,7 +37,7 @@ export default function useWindowHeight(){
     const element = document.getElementById('_windowHeight') || (
       (()=>{
         const e = document.createElement('div');
-        e.style.position = "absolute";
+        e.style.position = "fixed";
         e.style.bottom = "0px";
         e.id = '_windowHeight';
 
