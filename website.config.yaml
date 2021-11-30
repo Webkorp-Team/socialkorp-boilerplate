@@ -60,7 +60,7 @@ pages:
   # templates:
 
     # - name: newsletter-external
-    #   templateFile: templates/newsletter-external.html
+    #   templateFile: email-templates/newsletter-external.html
     #   subject:
     #     literal: Confirmation of newsletter subscription
     #   to:
@@ -73,7 +73,7 @@ pages:
     #       literal: Example.com | Website
 
     # - name: contact-external
-    #   templateFile: templates/contact-external.html
+    #   templateFile: email-templates/contact-external.html
     #   subject:
     #     literal: We have received your message.
     #   to:
@@ -88,7 +88,7 @@ pages:
     #       literal: Example.com | Website
 
     # - name: contact-internal
-    #   templateFile: templates/contact-internal.html
+    #   templateFile: email-templates/contact-internal.html
     #   subject:
     #     literal: New website form - Contact us.
     #   to:
