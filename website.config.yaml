@@ -202,9 +202,16 @@ lists:
   #       create: false
   #   publicAccess:
   #       create: true
+  #   evals:
+  #     - name: date
+  #       expression: this.date || (new Date()).toISOString().slice(0,10)
   #   properties:
   #     - name: email
   #       label: E-mail
+  #       type: text
+  #       readOnly: true
+  #     - name: date
+  #       title: Subscription date
   #       type: text
   #       readOnly: true
 
