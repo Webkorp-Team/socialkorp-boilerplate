@@ -21,7 +21,7 @@ const Text = styled.span`
   color: inherit;
   white-space: pre-wrap;
   overflow-wrap: break-word;
-  &[data-editable],
+  &[data-editable=true],
   &[contenteditable]{
     border: 1px dashed transparent;
     &:not(:focus):hover{
@@ -86,7 +86,7 @@ export default function ContentEditable({
 
     setInputInitialized(true);
   },[focus,inputInitialized,section,elementName,counter]);
-
+  
   const router = useRouter();
 
   const editable = Boolean(section && elementName);
@@ -132,7 +132,7 @@ export default function ContentEditable({
   const children = previewing && focus ? (
     <Text ref={inputRef} key="edit" {...inputProps}/>
   ):(
-    <Text data-display={true} data-editable={previewing} onClick={previewing ? handleFocus : undefined} key="display">
+    <Text data-editable={previewing} onClick={previewing ? handleFocus : undefined} key="display">
       <ParserComponent key="display">{
         (section ? section.get(elementName) : childrenFromProps) || (
           previewing ? '<empty>' : null

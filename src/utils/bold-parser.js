@@ -30,11 +30,5 @@ export function parseBold(string){
 export default function BoldParser({
   children
 }){
-  const result = parseBold(children);
-  return result;
-  // return <>{
-  //   parseBold(children).map((element,i) => (
-  //     <Fragment key={i}>{element}</Fragment>
-  //   ))
-  // }</>;
+  return parseBold(children || '');
 }
