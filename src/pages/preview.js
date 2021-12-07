@@ -63,6 +63,16 @@ export default function Preview(){
         });
   },[pageSchema]);
 
+  const sectionParams = useMemo(()=>(
+    !pageSchema ? {} : pageSchema.sections.reduce((sectionParams,section)=>({
+      ...sectionParams,
+      [section.name]: (section.params || []).reduce((params,param)=>({
+        ...params,
+        [param.name]: param.value
+      }),{})
+    }),{})
+  ),[pageSchema,sectionNames]);
+
   const [page, setPage] = useState(null);
 
   const handleUpdate = useCallback(sectionName => update => {
@@ -123,7 +133,13 @@ export default function Preview(){
       const Template = templates[pageName]?.[sectionName] || (()=><div>Missing template for "{pageName}/{sectionName}"</div>);
       return (
         <ContentEditableListener key={sectionName} onUpdate={handleUpdate(sectionName)}>
-          <Template section={page.getSection(sectionName)} preview={true} {...lists} {...otherSectionDependencies[sectionName]} />
+          <Template
+            section={page.getSection(sectionName)}
+            preview={true}
+            {...lists}
+            {...otherSectionDependencies[sectionName]}
+            {...sectionParams[sectionName]}
+          />
         </ContentEditableListener>
       );
     })

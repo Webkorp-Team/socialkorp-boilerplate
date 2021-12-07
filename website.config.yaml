@@ -31,6 +31,9 @@ pages:
       #     - page: common
       #       section: footer
       #       as: footerSection
+      #   params:
+      #     - name: variant
+      #       value: dark
 
   - name: terms
     title: Terms and Conditions
